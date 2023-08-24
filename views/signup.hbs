@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="practice1css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/signup.css">
+    <title>Sign-Up-Form</title>
+</head>
+
+<body>
+    {{> navbar}}
+    <div class="container">
+        <form action="/signup" method="post" class="sign-form" id="sign-form" autocomplete="on">
+            <center>
+                <h1 class="form-title">Sign Up</h1>
+            </center>
+            <button class="google-sign-btn"><i class="fa fa-google"></i> Sign up with Google</button>
+
+            <br>
+
+            <div class="google-guide-container">
+
+            </div>
+
+            <label for="username">Name<span class="star-required">*</span></label>
+            <input type="text" name="name" id="username" placeholder="Name" autofocus required>
+            <p style="color: darkred;">{{messagen}}</p>
+
+            <label for="email">Email<span class="star-required">*</span></label>
+            <input type="email" name="email" id="email" placeholder="mail@website.com" required>
+            <p style="color: darkred;">{{messagee}}</p>
+
+            <label for="mobile">Mobile<span class="star-required">*</span></label>
+            <input type="number" name="mobile" id="email" placeholder="Mobile" required>
+            <p style="color: darkred;">{{messagem}}</p>
+
+            <label for="password">Password<span class="star-required">*</span></label>
+            <input type="password" name="password" id="password" placeholder="Min. 8 character" required>
+            <span class="eye-icon" onclick="togglePasswordVisibility('password')">&#128065;</span>
+            <p style="color: darkred;">{{messagep}}</p>
+
+            <label for="password">Confirm Password<span class="star-required">*</span></label>
+            <input type="password" name="confirm_password" id="confirmPassword" placeholder="Min. 8 character" required>
+            <span class="eye-icon" onclick="togglePasswordVisibility('confirmPassword')">&#128065;</span>
+            <p style="color: darkred;">{{messagep}}</p>
+
+            <br>
+
+            <input type="checkbox" name="terms-agree" id="terms-agree" required>
+            <p class="sentence-agree">I agree to the <a href="">Terms & Conditions</a></p>
+
+            <input type="submit" value="Sign Up" id="submit"><br>
+            <center>
+                <p style="color: red;">{{message}}</p>
+            </center>
+            <p class="have-account-line">Already have an Account? <a href="/login">login</a></p>
+
+            <p class="info">&copy;2023 Felix All rights reserved.</p>
+        </form>
+   <script>
+        function togglePasswordVisibility(fieldId) {
+            const field = document.getElementById(fieldId);
+            const eyeIcon = field.nextElementSibling;
+
+            if (field.type === "password") {
+                field.type = "text";
+                eyeIcon.textContent = "👁️";
+            } else {
+                field.type = "password";
+                eyeIcon.textContent = "👁️‍🗨️";
+            }
+        }
+    </script>
+
+    </div>
+   
+ 
+ {{> foot}}
+</body>
+
+</html>

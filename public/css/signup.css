@@ -1,0 +1,137 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Alkatra', cursive;
+}
+
+body {
+  margin: 0;
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  color: #4372a1;
+  text-align: var(--bs-body-text-align);
+  background: linear-gradient(128deg,#ffbad1dd,antiquewhite);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.eye-icon {
+  position: absolute;
+  /* top: 50%; */
+  /* right: 10px; */
+  transform: translateY(36%);
+  transform: translateX(-185%);
+  cursor: pointer;
+}
+
+#sign-form {
+  width: 50%;
+  height: 100%;
+  margin: 10vh auto;
+  padding: 5%;
+}
+
+label:not(label:first-of-type) {
+  display: block;
+  margin: 15px 0 5px 0;
+  font-size: 14px;
+}
+
+.sentence-agree {
+  display: inline;
+  font-size: 14px;
+}
+
+#submit {
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 0 20px;
+  background-color: #333399 !important;
+  color: #fff !important;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#submit:hover {
+  background-color: #23236a !important;
+}
+
+
+
+form-title{
+  margin-bottom: 10px;
+}
+
+input:not(input#terms-agree) {
+  background-color: #fff; 
+  width: 100%;
+  height: 45px;
+  padding-left: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 30px;
+  color: #333399;
+}
+
+input:focus {
+  outline: 1px solid #333399;
+}
+
+
+.google-sign-btn {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 45px;
+  border: 1px solid #cccccc;
+  border-radius: 30px;
+  outline: none;
+  background-color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.google-sign-btn:hover {
+  background-color: #cccccc;
+}
+
+i.fa-google {
+  font-size: 25px;
+  margin-right: 5px;
+  vertical-align: middle;  
+  color: #333399;
+}
+
+
+.star-required {
+  color:#333399;
+}
+
+input[type=checkbox] {
+  margin: 30px 0 30px 0;
+  accent-color: #333399;
+}
+
+a {
+  color: #333399;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a:hover {
+  color: #23236a;
+}
+
+.have-account-line {
+  margin: 30px 0 30px 0;
+  font-size: 14px;
+}
+
+.info {
+  color: #737373;
+  font-size: 14px;
+}
+

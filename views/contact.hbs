@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>contact us</title>
+    <meta content="noindex, nofollow" name="robots">
+    <!-- Include CSS File Here-->
+    <link href="css/form5.css" rel="stylesheet">
+</head>
+<link rel="stylesheet" href="css/home.css">
+
+<body>
+   <form action="/contact" method="POST"></form>
+    {{> navbar}}
+        <section class="contactus">
+            {{!-- <div class="title">
+                <h2 class="titeText"><span>C</span>ontact <span class="us" style="color: antiquewhite;">Us</span>
+                </h2>
+                <p style="color: antiquewhite;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error, at.
+                </p>
+            </div> --}}
+
+            <div class="contactform">
+                <h3>Send Message</h3>
+                <div class="inputbox">
+                    <input type="text" placeholder="Subject" name="subject" required>
+                </div>
+                <div class="inputbox">
+                    <input type="email" placeholder="Email" name="email" required>
+                </div>
+                <div class="inputbox">
+                    <textarea placeholder="Message" name="msg" required></textarea>
+                </div>
+                <div class="inputbox">
+                    <input type="submit" value="Send">
+                </div>
+                <p style="color: black; font-size:18px">{{message}}</p>
+            </div>
+
+        </section>
+      
+    </form>
+   {{> foot}}
+</body>
+
+</html>

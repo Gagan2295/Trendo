@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  
+}
+.main{
+  margin-top: 258px;  
+}
+.content{
+  margin-top: 200px;
+  font-family: cursive
+}
+
+.button{
+  font-family: cursive;
+  border:solid 2px;
+  border-radius: 7px;
+  margin-top: 5px;
+  padding: 4px 7px;
+}
+
+#email {
+    display: none;
+  }
+
+  div {
+    margin: 3px;
+  }
+
+
+
+  label {
+    display: inline-block;
+    ;
+    width: 100px;
+  }
+
+.flex-container {
+  display: flex;
+  flex-direction: column-reverse;
+} 

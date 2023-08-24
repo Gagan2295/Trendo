@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verify</title>
+    <link rel="stylesheet" href="css/email.css">
+</head>
+
+<body>
+     {{> navbar}}
+    <form action="/verifyemail" method="post">
+        <center>
+            <p style="font-family: cursive; font-size:26px; margin-top:30px">Please Verify Your Email to Reset your password</p>
+            <div class='flex-container'>
+            
+            <div class="content">
+                <label>Enter Email: </label>
+                <input type='email' name="email" />
+            </div>
+        </div>
+        <input type="submit" value="Verify" class="button">
+        </center>
+    </form>
+    <p style="color: rgba(230, 41, 41, 0.79);">{{message}}</p>
+    
+</body>
+
+</html>

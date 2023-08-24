@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<link rel="stylesheet" href="css/login.css">
+
+<body>
+  {{> navbar}}
+  <div class="LoginPageContainer">
+    <div class="LoginPageInnerContainer">
+      {{!-- <div class="ImageContianer">
+        <img src="" class="GroupImage">
+      </div> --}}
+      <div class="LoginFormContainer">
+        <div class="LoginFormInnerContainer">
+          {{!-- <div class="LogoContainer">
+            <img src="https://www.pngkey.com/png/full/529-5291672_sample-logo-png-transparent-background.png"
+              class="logo">
+          </div> --}}
+
+          <form action="/login" method="post">
+            <div class="inputContainer">
+              <label class="label" for="emailAddress"><img src="https://i.imgur.com/Hn13wvm.png"
+                  class="labelIcon"><span>Email
+                  Address*</span></label>
+              <input type="email" name="email" class="input" id="emailAddress" placeholder="Enter your Email Address">
+            </div>
+            <div class="inputContainer">
+              <label class="label" for="emailAddress"><img src="https://i.imgur.com/g5SvdfG.png"
+                  class="labelIcon"><span>Password*</span></label>
+              <input type="password" name="password" class="input" id="emailAddress" placeholder="Enter your Password">
+            </div>
+            <div class="OptionsContainer">
+
+              <a href="/verifyemail" class="ForgotPasswordLink">Forgot Password?</a>
+            </div>
+            <button class="LoginButton">Login</button><br>
+            <center>
+              <p style="color: red;">{{message}}</p>
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> foot}}
+</body>
+
+</html>

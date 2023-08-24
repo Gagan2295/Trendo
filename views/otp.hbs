@@ -1,0 +1,39 @@
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>otp</title>
+    {{!--
+    <link rel="stylesheet" type="text/css" href="otp.css"> --}}
+    <link rel="stylesheet" href="css/otp.css">
+</head>
+
+<body>
+     {{> navbar}}
+    <form action="/otp" method="post">
+
+        <div class="container">
+            <h1>ENTER OTP</h1>
+            <div class="userInput">
+                <input type="text" name="email_otp" id='ist' maxlength="4" onkeyup="clickEvent(this,'sec')">
+                {{!-- <input type="text" name="email_otp" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')"> --}}
+                {{!-- <input type="text" name="email_otp" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')"> --}}
+                {{!-- <input type="text" name="email_otp" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')"> --}}
+                {{!-- <input type="text" name="email_otp" id="fifth" maxlength="1"> --}}
+            </div>
+            <center><button>CONFIRM</button></center>
+        </div>
+
+    </form>
+    {{!-- <script>
+        function clickEvent(first, last) {
+            if (first.value.length) {
+                document.getElementById(last).focus();
+            }
+        }</script> --}}
+        {{> foot}}
+</body>
+
+</html>
