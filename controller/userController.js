@@ -1,10 +1,10 @@
-const { ExpressValidator, validationResult} = require("express-validator");
+const { ExpressValidator, validationResult } = require("express-validator");
 const userModel = require("../model/userSchema");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
-const secretkey = "gagandeep"
+// const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 
 
@@ -33,13 +33,13 @@ let register = async (req, res) => {
         for (var i = 0; i < err.length; i++) {
             if (err[i].path === 'name') {
                 res.render("signup.hbs", { messagen: "name short" })
-            } 
+            }
             else if (err[i].path === 'email') {
                 res.render("signup.hbs", { messagee: "email not valid" })
-            } 
+            }
             else if (err[i].path === 'mobile') {
                 res.render("signup.hbs", { messagem: "mobile not valid" })
-            } 
+            }
             else if (err[i].path === 'password') {
                 res.render("signup.hbs", { messagep: "wrong pass" })
             }
@@ -53,11 +53,11 @@ let register = async (req, res) => {
         if (alreadyExistUser) {
 
             return res.render("signup.hbs", { message: "User already Exist" });
-        } else{
-            let {password,confirm_password}= req.body;
-            if(password!==confirm_password){
-                res.render("signup.hbs",{message:"password not match"})
-            }else{
+        } else {
+            let { password, confirm_password } = req.body;
+            if (password !== confirm_password) {
+                res.render("signup.hbs", { message: "password not match" })
+            } else {
                 await userModel.create(data);
                 res.redirect("/login",)
                 res.render("login.hbs", { message: "Register Successfully" });
@@ -66,7 +66,7 @@ let register = async (req, res) => {
 
 
     } catch (error) {
-        res.render(error)
+        return res.render("signup.hbs", { message: error.message })
     }
 }
 
@@ -74,47 +74,36 @@ let register = async (req, res) => {
 
 let loginpage = async (req, res) => {
     try {
-        // let a = req.cookies.jwtToken;
-        // console.log(a);
-        // if (a != undefined) {
-        //     let verify = jwt.verify(a, secretkey)
-        //     if (!verify) {
-        //         res.render("/login")
-        //     } else {
-        //         res.render("/home")
-        //     }
-        // } 
         let { email, password } = req.body;
-        let find = await userModel.findOne({ email:email })
-        if (!find) {
-            res.render("login.hbs", { message: "Incorrect Email..." })
-        } else {
-            let compare = bcrypt.compareSync(password, find.password);
-            if (compare) {
-               
-                jwt.sign({ data }, secretkey,(err,token) => {
-                     res.cookie("jwtToken", token)
-                    res.redirect("/home")
-                    res.render("home.hbs", ({ message2: find.name + "", token:token }));
+        let find = await userModel.findOne({ email: email })
+        if (!find) return res.render("login.hbs", { message: "Incorrect Email..." })
 
-                })    
-            } 
-            else {
-                res.render("login.hbs", { message: "Incorrect Email or Password" })
-            }
-        }
+        let compare = bcrypt.compareSync(password, find.password);
+        let newdata = { name: find.name, email: find.email, mobile: find.mobile }
+        if (!compare) return res.render("login.hbs", { message: "Incorrect Email or Password" })
+
+        jwt.sign(newdata, process.env.secretkey, (err, token) => {
+            if (err) return res.render("login.hbs", { message: err.message })
+            res.cookie("jwtToken", token)
+            res.render("home.hbs", ({ message2: find.name }));
+
+        })
+
+
+
     } catch (error) {
         res.render("login.hbs", { message: "Invalid details..." })
     }
 }
 
 
-    //   logout
 
-    const logout =async (req,res)=>{
-        res.clearCookie("jwtToken")
-        res.redirect("/home")
-    }
+//   logout
+
+const logout = async (req, res) => {
+    res.clearCookie("jwtToken")
+    res.redirect("/homePage")
+}
 
 
 
@@ -135,11 +124,10 @@ const contactpage = async (req, res) => {
         });
 
         var mailOptions = {
-            to: 'deepvirk539@gmail.com',
-            from: req.body.email,
-            // name: req.body.name,
-            text: req.body.msg,
-            subject: req.body.subject
+         from: "deepvirk539@gmail.com",
+            to: req.body.email,
+            subject: "we got your email",
+            text: `hii ${req.body.email} is connected....` ,
 
         };
 
@@ -174,8 +162,8 @@ const emailpage = async (req, res) => {
         });
         email_otp = Math.floor(1000 + Math.random() * 9000);
         var mailOptions = {
-            to: 'deepvirk539@gmail.com',
-            from: req.body.email,
+            from: "deepvirk539@gmail.com",
+            to: req.body.email,
             text: `Your Verification OTP for forgot password is ${email_otp}`,
             subject: "Forgot password OTP"
 
@@ -233,10 +221,11 @@ const confirm_password = async (req, res) => {
 
 
 
+
 //  Get Api's
 
 
-const home= async (req, res) => {
+const home =(req, res) => {
     res.render("home.hbs")
 }
 
@@ -244,28 +233,32 @@ const login = (req, res) => {
     res.render("login.hbs")
 }
 
-const signup = async (req, res) => {
+const signup = (req, res) => {
     res.render("signup.hbs")
 }
 
-const cart = async (req, res) => {
+const cart =(req, res) => {
     res.render("cart.hbs")
 }
 
-const contact = async (req, res) => {
-    res.render("contact.hbs")
+const showContactPage =(req, res) => {
+    res.render("contact.hbs",)
 }
 
-const password = async (req, res) => {
+const password =(req, res) => {
     res.render("password.hbs")
 }
 
-const email = async (req, res) => {
+const email =(req, res) => {
     res.render("email.hbs")
 }
 
 const otp = (req, res) => {
     res.render("otp.hbs")
+}
+
+const product = (req, res) => {
+    res.render("product.hbs")
 }
 
 
@@ -279,7 +272,7 @@ module.exports = {
     loginpage,
     signup,
     cart,
-    contact,
+    showContactPage,
     contactpage,
     email,
     emailpage,
@@ -287,7 +280,6 @@ module.exports = {
     verifyotp,
     password,
     confirm_password,
-    logout
-
-    
+    logout,
+    product
 }

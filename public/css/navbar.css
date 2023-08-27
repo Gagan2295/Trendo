@@ -6,6 +6,11 @@
     margin: 0;
     font-family: 'PT Sans', sans-serif;
     scroll-behavior: smooth;
+    
+}
+
+#username{
+    font-size: 24px;
 }
 
 .fa-solid {
@@ -43,10 +48,15 @@ header {
     color: #111;
 }
 
+dl, ol, ul {
+    margin-top: 0px;
+    margin-bottom: 0rem;
+}
+
 header .logo {
     color: #fff;
     font-weight: bold;
-    font-size: 2.5em;
+    font-size: 36px;
     text-decoration: none;
 }
 
@@ -66,7 +76,8 @@ header .navigation li {
 
 header .navigation li a {
     text-decoration: none;
-    color: #fff;
+    /* color: #fff; */
+    color: #ff0157;
     font-weight: 200;
     font-size: 1.5em;
     transition: .5s;
@@ -74,6 +85,8 @@ header .navigation li a {
 
 header .navigation li a:hover {
     color: #ff0157;
+    transition: .5s;
+    box-shadow: 2px 2px 4px 4px rgba(255, 255, 255, 0.635);
 }
 
 section {

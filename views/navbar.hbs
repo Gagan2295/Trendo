@@ -26,27 +26,27 @@
       </div>
       <ul class="navigation">
 
-        <li><a href="/home">Home</a></li>
+        {{!-- <li><a href="/home">Home</a></li>
         <li><a href="#menu">Products</a></li>
         <li><a href="/contact">Contact Us</a></li>
         <li><a href="/signup">Sign-up</a></li>
         <li><a href="/login">Login</a></li>
-        <li><a href="/logout">Logout</a></li>
+        <li><a href="/logout">Logout</a></li> --}}
 
-      {{!-- <li><a href="/home">Home</a></li>
-        <li><a href="#menu">Products</a></li>
+      <li><a href="/homePage">Home</a></li>
+        <li><a href="/product">Products</a></li>
         <li><a href="/contact">Contact Us</a></li>
-       {{#if isTokenPresent}}
+       {{#if message2}}
         <li><a href="/logout">Logout</a></li>
     {{else}}
         <li><a href="/signup">Sign-up</a></li>
         <li><a href="/login">Login</a></li>
-    {{/if}} --}}
+    {{/if}}
 
         <li>
-          <p style="color: red; font-style:bold; font-faimly:cursive;">{{message}}</p>
+          <p id="username">{{message2}}</p>
         </li>
-        <a href="/cart"><i class="fa-solid fa-cart-arrow-down"></i></a>
+        <a href="/cart"><i class="fa-solid fa-cart-arrow-down" style="margin-left: 15px;"></i></a>
       </ul>
     </header>
   </form>

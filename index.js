@@ -4,7 +4,8 @@ const userRoutes = require("./router/userRouter");
 const app = express();
 const path = require('path');
 const hbs =require("hbs");
-
+let cookieParser=require("cookie-parser");
+app.use(cookieParser());
 
 
 app.use(express.json())
