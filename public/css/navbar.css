@@ -54,7 +54,7 @@ dl, ol, ul {
 }
 
 header .logo {
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-weight: bold;
     font-size: 36px;
     text-decoration: none;
@@ -86,7 +86,7 @@ header .navigation li a {
 header .navigation li a:hover {
     color: #ff0157;
     transition: .5s;
-    box-shadow: 2px 2px 4px 4px rgba(255, 255, 255, 0.635);
+    box-shadow: 2px 2px 4px 4px rgba(105, 93, 93, 0.635);
 }
 
 section {

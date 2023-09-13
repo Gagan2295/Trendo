@@ -30,7 +30,7 @@
             </div>
 
             <label for="username">Name<span class="star-required">*</span></label>
-            <input type="text" name="name" id="username" placeholder="Name" autofocus required>
+            <input type="text" name="name" id="username" placeholder="name" autofocus required>
             <p style="color: darkred;">{{messagen}}</p>
 
             <label for="email">Email<span class="star-required">*</span></label>
@@ -44,7 +44,7 @@
             <label for="password">Password<span class="star-required">*</span></label>
             <input type="password" name="password" id="password" placeholder="Min. 8 character" required>
             <span class="eye-icon" onclick="togglePasswordVisibility('password')">&#128065;</span>
-            <p style="color: darkred;">{{messagep}}</p>
+            {{!-- <p style="color: darkred;">{{messagep}}</p> --}}
 
             <label for="password">Confirm Password<span class="star-required">*</span></label>
             <input type="password" name="confirm_password" id="confirmPassword" placeholder="Min. 8 character" required>

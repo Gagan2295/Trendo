@@ -3,7 +3,7 @@ const { ExpressValidator,check } = require("express-validator");
 const router = express.Router();
 let auth=require("../middleware/userMiddleware")
 
-const { register,home,login,signup,cart,loginpage,showContactPage,contactpage,password,email,emailpage,otp,verifyotp,confirm_password,logout,product } = require("../controller/userController")
+const { register,home,login,signup,cart,loginpage,showContactPage,contactpage,password,email,emailpage,otp,verifyotp,confirm_password,logout,product,updateproduct,addproduct,addproductpage } = require("../controller/userController")
 
 router.post("/signup",[
     check("name").isLength({min:3}).withMessage("name is too short"),
@@ -25,7 +25,13 @@ router.post("/otp",verifyotp)
 router.get("/password",password)
 router.post("/password",confirm_password)
 router.get("/logout",logout)
-router.get("/product",auth,product)
+router.get("/product",product)
+router.post("/product",updateproduct)
+router.get("/addproduct",addproduct)
+router.post("/addproduct",addproductpage)
+// Define the route for adding products
+// router.post('/products',addproductpage);
+
 
 
 

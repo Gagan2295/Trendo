@@ -37,13 +37,13 @@
             </div>
             <div class="OptionsContainer">
 
-              <a href="/verifyemail" class="ForgotPasswordLink">Forgot Password?</a>  <br><br>
+              <a href="/verifyemail" class="ForgotPasswordLink">Forgot Password?</a> <br><br>
               <a href="/signup" class="ForgotPasswordLink">Need an account</a>
 
             </div>
             <button class="LoginButton">Login</button><br>
             <center>
-              <p style="color: rgb(38, 0, 255);">{{message}}</p>
+              <p style="color: rgb(38, 0, 255);" id="message">{{message}}</p>
             </center>
           </form>
         </div>
@@ -51,6 +51,29 @@
     </div>
   </div>
   {{> foot}}
+
+  <script>
+
+    if (message) {
+      window.onload = function () {
+        var messageElement = document.getElementById("message");
+        setTimeout(function () {
+          messageElement.style.display = "none";
+        }, 3000); // Hide after 3 seconds
+      };
+    } else if (!message) {
+      window.onload = function () {
+        var messageElement = document.getElementById("none");
+        setTimeout(function () {
+          messageElement.style.display = "none";
+        }, 3000); // Hide after 3 seconds
+      };
+    }
+  </script>
+
+
 </body>
+
+
 
 </html>

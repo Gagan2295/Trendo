@@ -1,10 +1,16 @@
 const { ExpressValidator, validationResult } = require("express-validator");
 const userModel = require("../model/userSchema");
+const Product = require("../model/product");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-// const cookieParser = require("cookie-parser");
 require("dotenv").config();
+const bodyparser=require("body-parser");
+const cloudinary=require("cloudinary").v2;
+let fileUpload=require("express-fileupload");
+const multer=require("multer");
+
+
 
 
 
@@ -41,7 +47,7 @@ let register = async (req, res) => {
                 res.render("signup.hbs", { messagem: "mobile not valid" })
             }
             else if (err[i].path === 'password') {
-                res.render("signup.hbs", { messagep: "wrong pass" })
+                res.render("signup.hbs", { messagep: "Enter a secure password: At least 8 characters long, containing uppercase and lowercase letters and numbers." })
             }
             console.log(err[i])
         }
@@ -56,7 +62,7 @@ let register = async (req, res) => {
         } else {
             let { password, confirm_password } = req.body;
             if (password !== confirm_password) {
-                res.render("signup.hbs", { message: "password not match" })
+                res.render("signup.hbs", { message: "Error:Confirm password not match" })
             } else {
                 await userModel.create(data);
                 res.redirect("/login",)
@@ -74,9 +80,10 @@ let register = async (req, res) => {
 
 let loginpage = async (req, res) => {
     try {
+
         let { email, password } = req.body;
         let find = await userModel.findOne({ email: email })
-        if (!find) return res.render("login.hbs", { message: "Incorrect Email..." })
+        if (!find) return res.render("login.hbs", { message: "Invalid credentials" })
 
         let compare = bcrypt.compareSync(password, find.password);
         let newdata = { name: find.name, email: find.email, mobile: find.mobile }
@@ -92,7 +99,7 @@ let loginpage = async (req, res) => {
 
 
     } catch (error) {
-        res.render("login.hbs", { message: "Invalid details..." })
+        res.render("login.hbs", { message: error })
     }
 }
 
@@ -124,10 +131,10 @@ const contactpage = async (req, res) => {
         });
 
         var mailOptions = {
-         from: "deepvirk539@gmail.com",
+            from: "deepvirk539@gmail.com",
             to: req.body.email,
             subject: "we got your email",
-            text: `hii ${req.body.email} is connected....` ,
+            text: `hii ${req.body.email} is connected....`,
 
         };
 
@@ -220,12 +227,53 @@ const confirm_password = async (req, res) => {
 }
 
 
+// .......Add Product Api.................
+
+let newdata;
+const addproductpage = async (req,res) =>{
+    try{
+        let {product_name,price,discount_price,description,category}=req.body
+        let file = req.files.image
+        cloudinary.uploader.upload(file.tempFilePath,async(err,data)=>{
+            newdata ={
+                product_name:product_name,
+                price:price,
+                discount_price:discount_price,
+                description:description,
+                category:category,
+                image:data.url
+            };
+            let savedata=await Product.create(newdata);
+            if(savedata) return res.render("addproduct.hbs",{message:"Your Product Upload Successfully..."});
+            console.log(savedata)
+            if(!savedata) return res.render("addproduct.hbs",{message:"Your Product Not Upload Successfully...Try again"});
+        })
+    }catch(error){
+        res.render(error)
+    }
+}
+
+// update product
+
+const updateproduct = async (req,res)=>{ 
+    try{
+        const products = await Product.findById()
+        console.log(products)
+
+    //    res.render("product.hbs", { products });
+
+    
+}catch(error){
+        res.render(error)
+    };
+};
+
 
 
 //  Get Api's
 
 
-const home =(req, res) => {
+const home = (req, res) => {
     res.render("home.hbs")
 }
 
@@ -237,19 +285,19 @@ const signup = (req, res) => {
     res.render("signup.hbs")
 }
 
-const cart =(req, res) => {
+const cart = (req, res) => {
     res.render("cart.hbs")
 }
 
-const showContactPage =(req, res) => {
+const showContactPage = (req, res) => {
     res.render("contact.hbs",)
 }
 
-const password =(req, res) => {
+const password = (req, res) => {
     res.render("password.hbs")
 }
 
-const email =(req, res) => {
+const email = (req, res) => {
     res.render("email.hbs")
 }
 
@@ -261,6 +309,9 @@ const product = (req, res) => {
     res.render("product.hbs")
 }
 
+const addproduct = (req, res) => {
+    res.render("addproduct.hbs")
+}
 
 
 
@@ -281,5 +332,9 @@ module.exports = {
     password,
     confirm_password,
     logout,
-    product
+    product,
+    updateproduct,
+    addproduct,
+    addproductpage
+
 }

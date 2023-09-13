@@ -12,7 +12,7 @@
 }
 
 body{
-    background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%), radial-gradient(at top center, rgb(0, 0, 0) 0%, rgba(0,0,0,0.40) 120%);
+    /* background: linear-gradient(to bottom, rgb(164, 144, 144) 0%, rgb(154, 133, 133) 100%), radial-gradient(at top center, rgb(134, 113, 113) 0%, rgba(129, 110, 110, 0.4) 120%); */
 }
 
 .row {
